@@ -1,28 +1,34 @@
 import React, { useEffect } from 'react';
 import '../App.css'
+import Footer from '../components/Footer';
 
 const Home = () => {
   useEffect(() => {
     const counters = document.querySelectorAll('.counter');
     const options = {
-      rootMargin: '0px 0px -50px 0px', // Adjusts the trigger point
-      threshold: 0.5, // When 50% of the element is visible
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.5,
     };
 
     const handleIntersect = (entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const el = entry.target;
-          const updateCount = () => {
-            let target = +el.getAttribute('data-target');
+          const target = el.hasAttribute('data-target') ? el.getAttribute('data-target') : el.getAttribute('data-target-st');
+          const updateCount = (increment) => {
             let count = +el.innerText;
-            if (count < target) {
-              el.innerText = count + 1;
-              setTimeout(updateCount, 30);
+            const targetCount = +target;
+            if (count < targetCount) {
+              el.innerText = count + increment;
+              setTimeout(() => updateCount(increment), 30);
             }
           };
-          updateCount();
-          observer.unobserve(el); // Stop observing after the animation starts
+
+          // Determine the increment for the count
+          const increment = target === el.getAttribute('data-target-st') ? 10 : 1;
+          updateCount(increment);
+
+          observer.unobserve(el);
         }
       });
     };
@@ -30,93 +36,63 @@ const Home = () => {
     const observer = new IntersectionObserver(handleIntersect, options);
     counters.forEach(counter => observer.observe(counter));
 
-    // Cleanup observer when the component is unmounted
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-  useEffect(() => {
-    const counters = document.querySelectorAll('.counter');
-    const options = {
-      rootMargin: '0px 0px -50px 0px', // Adjusts the trigger point
-      threshold: 0.5, // When 50% of the element is visible
-    };
-
-    const handleIntersect = (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const updateCount = () => {
-            let target = +el.getAttribute('data-target-st');
-            let count = +el.innerText;
-            if (count < target) {
-              el.innerText = count + 10;
-              setTimeout(updateCount, 1);
-            }
-          };
-          updateCount();
-          observer.unobserve(el); // Stop observing after the animation starts
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(handleIntersect, options);
-    counters.forEach(counter => observer.observe(counter));
-
-    // Cleanup observer when the component is unmounted
     return () => {
       observer.disconnect();
     };
   }, []);
 
-  useEffect(() => {
-    const sections = document.querySelectorAll('.scroll-animate');
-    const options = {
-      rootMargin: '0px 0px -50px 0px', // Adjusts trigger point
-      threshold: 0.5, // When 50% of the element is visible
-    };
 
-    const handleIntersect = (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate'); // Add animation class when visible
-          observer.unobserve(entry.target); // Stop observing after the animation starts
-        }
-      });
-    };
+  // useEffect(() => {
+  //   const sections = document.querySelectorAll('.scroll-animate');
+  //   const options = {
+  //     rootMargin: '0px 0px -50px 0px', // Adjusts trigger point
+  //     threshold: 0.5, // When 50% of the element is visible
+  //   };
 
-    const observer = new IntersectionObserver(handleIntersect, options);
-    sections.forEach(section => observer.observe(section));
+  //   const handleIntersect = (entries, observer) => {
+  //     entries.forEach(entry => {
+  //       if (entry.isIntersecting) {
+  //         entry.target.classList.add('animate'); // Add animation class when visible
+  //         observer.unobserve(entry.target); // Stop observing after the animation starts
+  //       }
+  //     });
+  //   };
 
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+  //   const observer = new IntersectionObserver(handleIntersect, options);
+  //   sections.forEach(section => observer.observe(section));
+
+  //   return () => {
+  //     observer.disconnect();
+  //   };
+  // }, []);
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center">
       {/* Welcome Section with Background Image */}
-      <section className="relative w-full h-screen bg-cover bg-center scroll-animate" style={{
-        backgroundImage: `url(https://www.mymathews.com/media/institute_banner/Government_Polytechnic_College_Vanavasi_BANNER.JPG)`
-      }}>
-        <div className="absolute inset-0 bg-black opacity-40"></div> {/* Increased opacity for better contrast */}
-        <div className="flex justify-center items-center w-full h-full text-center text-white relative z-10">
-          <div>
-            <h1 className="text-4xl font-semibold mb-4 font-sans">
-              Welcome to Government Polytechnic College, Vanavasi, Salem
-            </h1>
-            <p className="text-lg mb-6">
-              Empowering students with knowledge, skills, and a bright future.
-            </p>
-            <button className="bg-primary text-white py-2 px-6 rounded-lg hover:bg-secondary transition duration-300">
-              Learn More
-            </button>
-          </div>
+      <section
+        className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
+        style={{
+          backgroundImage: `url(https://www.mymathews.com/media/institute_banner/Government_Polytechnic_College_Vanavasi_BANNER.JPG)`,
+        }}
+      >
+        <div className="absolute inset-0 bg-black opacity-50"></div> {/* Darker overlay for better contrast */}
+        <div className="relative z-10 text-center text-white px-6">
+          <h1 className="text-2xl sm:text-5xl font-bold mb-6 drop-shadow-lg">
+            Welcome to Government Polytechnic College Vanavasi, Salem
+          </h1>
+          <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+            Empowering students with knowledge, skills, and a bright future.
+          </p>
+          <a href="#learn-more" className="bg-gradient-to-r from-blue-600 to-blue-400 text-white py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform duration-300">
+            Learn More
+          </a>
         </div>
       </section>
 
+
+
       {/* About Section */}
-      <section className="bg-gray-50 py-12 px-6 w-full scroll-animate">
+      <section className="bg-gray-50 py-12 px-6 w-full">
         <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
           <div className="lg:w-1/2 text-center lg:text-left">
             <h2 className="text-3xl font-semibold text-primary mb-4 font-sans">
@@ -138,7 +114,7 @@ const Home = () => {
 
           <div className="lg:w-1/2 mt-8 lg:mt-0">
             <img
-              src="https://lh5.googleusercontent.com/p/AF1QipMsPAfvd0RNlcub0CfvdEgnuSb4jbX7OjHNos5W=w408-h293-k-no"
+              src="https://gptcvanavasi.co.in//thumbs/banner/banner1.jpg"
               alt="College Image"
               className="w-full h-auto rounded-lg shadow-lg"
             />
@@ -147,7 +123,7 @@ const Home = () => {
       </section>
 
       {/* Courses Section */}
-      <section className="bt-12 w-full p-6 scroll-animate bg-gray-50">
+      <section className="bt-12 w-full p-6  bg-gray-50">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-semibold text-primary mb-4 font-sans">Our Courses</h2>
           <p className="text-lg text-gray-700 mb-6 max-w-3xl mx-auto">
@@ -181,7 +157,7 @@ const Home = () => {
 
 
       {/* Fun Facts Section */}
-      <section className="relative w-full bg-cover bg-center scroll-animate" style={{
+      <section className="relative w-full bg-cover bg-center scrol-animate" style={{
         backgroundImage: `url(https://gplucknow.co.in/public/user/assets/images/bg/bg2.jpg)`,
         backgroundPosition: '50% -100px',
         backgroundAttachment: 'fixed',
@@ -224,7 +200,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="flex flex-col lg:flex-row items-center justify-between p-10 container mx-auto space-y-8 lg:space-y-0 scroll-animate">
+      <section className="flex flex-col lg:flex-row items-center justify-between p-10 container mx-auto space-y-8 lg:space-y-0 ">
         {/* Left side: Principal's Message */}
         <div className="w-full lg:w-1/2 pr-8 text-center lg:text-left ">
           <h2 className="text-4xl font-bold  mb-4 font-sans text-secondary "><span className='text-primary'>Principal</span> Message</h2>
@@ -244,7 +220,7 @@ const Home = () => {
               src="https://gptcvanavasi.co.in/userfiles/JAG_4879(4).jpg"
               className="w-full h-auto object-cover rounded-lg shadow-lg"
             />
-            <div className="content border-b-2 border-b-secondary border-theme-color-2 p-4 bg-sec mt-2">
+            <div className="content border-b-2 border-b-primary border-theme-color-2 p-4 bg-sec mt-2">
               <h4 className="name text-2xl font-semibold text-text mt-0">
                 Mr. N. JAGADEESAN
               </h4>
@@ -254,7 +230,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="mt-12 p-6 w-full bg-gray-50 scroll-animate">
+      <section className="mt-12 p-6 w-full bg-gray-50 pb-10 ">
         <div className='container mx-auto'>
           <div className="text-center mb-8">
             <h2 className="text-3xl font-semibold text-primary mb-4 font-sans">Our <span className='text-secondary'>Facilities</span></h2>
@@ -347,7 +323,45 @@ const Home = () => {
         </div>
       </section>
 
+      <section
+        className="relative bg-cover bg-center pt-16 pb-28 w-full opacity-90"
+        style={{
+          backgroundImage:
+            "url('https://gplucknow.co.in/public/user/assets/images/bg/bg1.jpg')",
+          backgroundPosition: '50% -2961px',
+        }}
+      >
+        <div className="container mx-auto px-4 py-16">
+          {/* Section Content */}
+          <div className="section-content">
+            <div className="section-title">
+              <div className="flex">
+                <div className="w-full md:w-2/3">
+                  <h2 className="mt-0 text-2xl md:text-4xl font-semibol leading-tight text-primary">
+                    STUDENT <span className="text-theme-color-2 font-normal text-secondary">INFORMATION SYSTEM</span>
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div className="mt-8">
+              <div className="w-full">
+                <h3 className="text-white font-sans text-left text-sm md:text-base font-light mt-0 mb-6">
+                  This section will deal with all the information pertaining to a student such as personal, academic as well as digital document and student report.
+                </h3>
+                <a
+                  className="bg-primary text-theme-color-2 font-semibold text-lg px-6 py-3 rounded-lg shadow-md transition duration-300 ease-in-out hover:bg-theme-color-2 hover:text-white mt-4 mb-6 inline-block"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Sign in →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <Footer />
 
     </div>
   );
