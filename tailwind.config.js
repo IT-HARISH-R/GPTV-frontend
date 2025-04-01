@@ -10,7 +10,8 @@ export default {
         // primary: "#003f7f", 
         // secondary: "#001932",  
         primary: "#1D4ED8", 
-        secondary: "#EF4444",  
+        // secondary: "#EF4444",  
+        secondary: "#e6a400",  
       },
       fontFamily: {
         sans: ['Open Sans', 'sans-serif'],  

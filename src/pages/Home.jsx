@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import '../App.css'
 
 const Home = () => {
   useEffect(() => {
@@ -68,10 +69,34 @@ const Home = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const sections = document.querySelectorAll('.scroll-animate');
+    const options = {
+      rootMargin: '0px 0px -50px 0px', // Adjusts trigger point
+      threshold: 0.5, // When 50% of the element is visible
+    };
+
+    const handleIntersect = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate'); // Add animation class when visible
+          observer.unobserve(entry.target); // Stop observing after the animation starts
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, options);
+    sections.forEach(section => observer.observe(section));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col justify-center items-center">
       {/* Welcome Section with Background Image */}
-      <section className="relative w-full h-screen bg-cover bg-center" style={{
+      <section className="relative w-full h-screen bg-cover bg-center scroll-animate" style={{
         backgroundImage: `url(https://www.mymathews.com/media/institute_banner/Government_Polytechnic_College_Vanavasi_BANNER.JPG)`
       }}>
         <div className="absolute inset-0 bg-black opacity-40"></div> {/* Increased opacity for better contrast */}
@@ -91,7 +116,7 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="bg-gray-50 py-12 px-6 w-full">
+      <section className="bg-gray-50 py-12 px-6 w-full scroll-animate">
         <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
           <div className="lg:w-1/2 text-center lg:text-left">
             <h2 className="text-3xl font-semibold text-primary mb-4">
@@ -122,33 +147,43 @@ const Home = () => {
       </section>
 
       {/* Courses Section */}
-      <section className="mt-12 p-6">
-        <div className="text-center">
+      <section className="bt-12 w-full p-6 scroll-animate bg-gray-50">
+        <div className="text-center mb-8">
           <h2 className="text-3xl font-semibold text-primary mb-4">Our Courses</h2>
-          <p className="text-lg text-gray-700 mb-6">
-            Explore the wide range of courses we offer to shape your career.
+          <p className="text-lg text-gray-700 mb-6 max-w-3xl mx-auto">
+            Explore the wide range of courses we offer to shape your career. Our courses are designed to provide both theoretical and practical knowledge to help you excel in your chosen field.
           </p>
         </div>
-        <div className="flex flex-wrap justify-center gap-6">
-          <div className="bg-white shadow-md p-6 rounded-lg w-64">
-            <h3 className="text-xl font-bold text-primary mb-2">Engineering</h3>
-            <p className="text-gray-600">Learn the fundamentals of Engineering with our specialized courses.</p>
+        <div className="flex flex-wrap justify-center gap-8">
+          <div className="bg-white shadow-lg p-8 rounded-lg w-64 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+            <h3 className="text-xl font-bold text-primary mb-4">Electronics and Communication Engineering (ECE)</h3>
+            <p className="text-gray-600">Gain expertise in Electronics and Communication systems, including signal processing, communication networks, and more.</p>
           </div>
-          <div className="bg-white shadow-md p-6 rounded-lg w-64">
-            <h3 className="text-xl font-bold text-primary mb-2">Computer Science</h3>
-            <p className="text-gray-600">Advance your skills in programming, algorithms, and system design.</p>
+          <div className="bg-white shadow-lg p-8 rounded-lg w-64 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+            <h3 className="text-xl font-bold text-primary mb-4">Computer Science Engineering (CSE)</h3>
+            <p className="text-gray-600">Advance your skills in programming, algorithms, data structures, and system design with our CSE courses.</p>
           </div>
-          <div className="bg-white shadow-md p-6 rounded-lg w-64">
-            <h3 className="text-xl font-bold text-primary mb-2">Electronics</h3>
-            <p className="text-gray-600">Build a strong foundation in Electronics and Communication Engineering.</p>
+          <div className="bg-white shadow-lg p-8 rounded-lg w-64 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+            <h3 className="text-xl font-bold text-primary mb-4">Mechanical Engineering (MECH)</h3>
+            <p className="text-gray-600">Study the fundamentals of Mechanical Engineering, focusing on mechanics, thermodynamics, and materials science.</p>
+          </div>
+          <div className="bg-white shadow-lg p-8 rounded-lg w-64 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+            <h3 className="text-xl font-bold text-primary mb-4">Civil Engineering (CE)</h3>
+            <p className="text-gray-600">Learn about structural design, construction materials, and urban infrastructure with our Civil Engineering courses.</p>
+          </div>
+          <div className="bg-white shadow-lg p-8 rounded-lg w-64 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+            <h3 className="text-xl font-bold text-primary mb-4">Electrical and Electronics Engineering (EEE)</h3>
+            <p className="text-gray-600">Explore the principles of electrical circuits, power systems, and electronics in our EEE courses.</p>
           </div>
         </div>
       </section>
 
+
+
       {/* Fun Facts Section */}
-      <section className="relative w-full bg-cover bg-center" style={{
+      <section className="relative w-full bg-cover bg-center scroll-animate" style={{
         backgroundImage: `url(https://gplucknow.co.in/public/user/assets/images/bg/bg2.jpg)`,
-        backgroundPosition: '50% 300px',
+        backgroundPosition: '50% -100px',
         backgroundAttachment: 'fixed',
       }}>
         <div className="absolute inset-0 bg-black opacity-40"></div> {/* Overlay for better text visibility */}
@@ -188,6 +223,38 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <section className="flex flex-col lg:flex-row items-center justify-between p-10 container mx-auto space-y-8 lg:space-y-0 scroll-animate">
+        {/* Left side: Principal's Message */}
+        <div className="w-full lg:w-1/2 pr-8 text-center lg:text-left ">
+          <h2 className="text-4xl font-bold text-gray-800 mb-4 font-sans"><span className='text-text'>Principal</span> Message</h2>
+          <p className="text-lg text-gray-700 leading-relaxed">
+            Welcome to our Government Polytechnic College. Our mission is to provide quality education
+            and prepare students to meet the challenges of the modern world. We are committed to academic
+            excellence, innovation, and a holistic approach to personal development. We believe in shaping
+            future leaders who will make a difference in society.
+          </p>
+        </div>
+
+        {/* Right side: Image */}
+        <div className="w-full lg:w-1/3 p-4 text-center">
+          <div className="">
+            <img
+              alt="Shri Sanjeev Kumar Singh"
+              src="https://gptcvanavasi.co.in/userfiles/JAG_4879(4).jpg"
+              className="w-full h-auto object-cover rounded-lg shadow-lg"
+            />
+            <div className="content border-b-2 border-b-secondary border-theme-color-2 p-4 bg-sec mt-2">
+              <h4 className="name text-2xl font-semibold text-text mt-0">
+                Mr. N. JAGADEESAN
+              </h4>
+              <p className="mb-4 text-lg">Principal</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
     </div>
   );
 };
