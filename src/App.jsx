@@ -1,13 +1,21 @@
-import React from 'react'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
 
 const App = () => {
-  return <div>
-<h1 className="bg-primary text-white px-4 py-2 rounded">Primary Button</h1>
-<h1 className="bg-secondary text-white px-4 py-2 rounded">Secondary Button</h1>
-<h1 className="text-primary  px-4 py-2 rounded">Primary Button</h1>
-<h1 className="text-secondary  px-4 py-2 rounded">Secondary Button</h1>
+  return (
+    <Router>
+      <Navbar /> {/* Your Navbar */}
 
-  </div>
-}
+        <Routes>
+          {/* Define Routes */}
+          <Route path="/" element={<Home />} />
 
-export default App
+        </Routes>
+    </Router>
+  );
+};
+
+export default App;
