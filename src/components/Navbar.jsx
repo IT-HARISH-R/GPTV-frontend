@@ -9,14 +9,21 @@ const Navbar = () => {
             <nav className="bg-primary text-white shadow-md font-sans">
                 <div className="container mx-auto flex items-center p-4">
                     <div className="w-full flex justify-between">
-                        <Link to="/" className="text-lg hover:text-secondary">Home</Link>
+                    <Link to="/" className="text-lg hover:text-secondary transition-colors duration-300">
+                            Home
+                        </Link>
 
-                        <Link to="/about" className="text-lg hover:text-secondary">About</Link>
+                        <Link to="/about" className="text-lg hover:text-secondary transition-colors duration-300">
+                            About
+                        </Link>
 
-                        <Link to="/courses" className="text-lg hover:text-secondary">Courses</Link>
+                        <Link to="/courses" className="text-lg hover:text-secondary transition-colors duration-300">
+                            Courses
+                        </Link>
 
-                        <Link to="/contact" className="text-lg hover:text-secondary">Contact</Link>
-
+                        <Link to="/contact" className="text-lg hover:text-secondary transition-colors duration-300">
+                            Contact
+                        </Link>
                     </div>
                 </div>
             </nav>
@@ -26,6 +33,4 @@ const Navbar = () => {
 
 export default Navbar;
 
-                    {/* <div className="text-2xl font-semibold">
-            <Link to="/" className="hover:text-secondary">Govt. Polytechnic College</Link>
-          </div> */}
+             

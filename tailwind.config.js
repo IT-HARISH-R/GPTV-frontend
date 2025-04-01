@@ -7,11 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        // primary: "#003f7f", 
-        // secondary: "#001932",  
-        primary: "#1D4ED8", 
-        // secondary: "#EF4444",  
-        secondary: "#e6a400",  
+
+        // primary: "#1D4ED8", 
+        // secondary: "#e6a400",  
+
+        primary: "#e6a400", 
+        secondary: "#1D4ED8",  
       },
       fontFamily: {
         sans: ['Open Sans', 'sans-serif'],  

@@ -119,10 +119,10 @@ const Home = () => {
       <section className="bg-gray-50 py-12 px-6 w-full scroll-animate">
         <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
           <div className="lg:w-1/2 text-center lg:text-left">
-            <h2 className="text-3xl font-semibold text-primary mb-4">
+            <h2 className="text-3xl font-semibold text-primary mb-4 font-sans">
               About <span className="text-secondary">College</span>
             </h2>
-            <h3 className="text-2xl font-semibold text-primary mb-2">
+            <h3 className="text-2xl font-semibold text-primary mb-2 font-sans">
               Welcome to <span className="text-secondary">GPC, Vanavasi</span>
             </h3>
             <p className="text-lg text-[#4f343a] mb-6 leading-relaxed">
@@ -149,7 +149,7 @@ const Home = () => {
       {/* Courses Section */}
       <section className="bt-12 w-full p-6 scroll-animate bg-gray-50">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-semibold text-primary mb-4">Our Courses</h2>
+          <h2 className="text-3xl font-semibold text-primary mb-4 font-sans">Our Courses</h2>
           <p className="text-lg text-gray-700 mb-6 max-w-3xl mx-auto">
             Explore the wide range of courses we offer to shape your career. Our courses are designed to provide both theoretical and practical knowledge to help you excel in your chosen field.
           </p>
@@ -227,7 +227,7 @@ const Home = () => {
       <section className="flex flex-col lg:flex-row items-center justify-between p-10 container mx-auto space-y-8 lg:space-y-0 scroll-animate">
         {/* Left side: Principal's Message */}
         <div className="w-full lg:w-1/2 pr-8 text-center lg:text-left ">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4 font-sans"><span className='text-text'>Principal</span> Message</h2>
+          <h2 className="text-4xl font-bold  mb-4 font-sans text-secondary "><span className='text-primary'>Principal</span> Message</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
             Welcome to our Government Polytechnic College. Our mission is to provide quality education
             and prepare students to meet the challenges of the modern world. We are committed to academic
@@ -253,6 +253,100 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <section className="mt-12 p-6 w-full bg-gray-50 scroll-animate">
+        <div className='container mx-auto'>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-semibold text-primary mb-4 font-sans">Our <span className='text-secondary'>Facilities</span></h2>
+            <p className="text-lg text-gray-700 mb-6 max-w-3xl mx-auto">
+              At Government Polytechnic College, Vanavasi, we are committed to providing our students with the best infrastructure and facilities to support their academic and extracurricular activities. Our campus is equipped with state-of-the-art amenities to foster an environment conducive to learning and personal growth.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Classrooms */}
+            <div className="bg-white shadow-lg p-6 rounded-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:scale-105">
+              <h3 className="text-xl font-bold text-primary mb-2">Classrooms</h3>
+              <p className="text-gray-600">
+                Our classrooms are spacious, well-ventilated, and equipped with modern teaching aids like projectors and smart boards. These are designed to provide an interactive and comfortable learning experience for students.
+              </p>
+            </div>
+
+            {/* Laboratories */}
+            <div className="bg-white shadow-lg p-6 rounded-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:scale-105">
+              <h3 className="text-xl font-bold text-primary mb-2">Laboratories</h3>
+              <p className="text-gray-600">
+                We offer fully equipped laboratories for various branches of engineering, including Electrical, Electronics, Civil, Mechanical, and Computer Science. These labs provide hands-on experience with the latest tools and technologies.
+              </p>
+            </div>
+
+            {/* Library */}
+            <div className="bg-white shadow-lg p-6 rounded-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:scale-105">
+              <h3 className="text-xl font-bold text-primary mb-2">Library</h3>
+              <p className="text-gray-600">
+                The college library is stocked with a vast collection of books, journals, research papers, and online resources to support the academic needs of our students and faculty. We also provide a quiet and peaceful space for reading and study.
+              </p>
+            </div>
+
+            {/* Wi-Fi and Computer Lab */}
+            <div className="bg-white shadow-lg p-6 rounded-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:scale-105">
+              <h3 className="text-xl font-bold text-primary mb-2">Wi-Fi and Computer Lab</h3>
+              <p className="text-gray-600">
+                Our campus is equipped with high-speed internet and a computer lab with the latest computers and software, allowing students to access online learning resources and enhance their technical skills.
+              </p>
+            </div>
+
+            {/* Hostel Facilities */}
+            <div className="bg-white shadow-lg p-6 rounded-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:scale-105">
+              <h3 className="text-xl font-bold text-primary mb-2">Hostel Facilities</h3>
+              <p className="text-gray-600">
+                We provide separate hostel facilities for both male and female students with all the necessary amenities, including comfortable rooms, 24/7 security, and a homely atmosphere.
+              </p>
+            </div>
+
+            {/* Sports and Recreation */}
+            <div className="bg-white shadow-lg p-6 rounded-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:scale-105">
+              <h3 className="text-xl font-bold text-primary mb-2">Sports and Recreation</h3>
+              <p className="text-gray-600">
+                Our campus boasts outdoor sports facilities such as a football ground, basketball court, and volleyball court. Indoor sports facilities like table tennis and chess are also available for students to unwind and maintain physical fitness.
+              </p>
+            </div>
+
+            {/* Cafeteria */}
+            <div className="bg-white shadow-lg p-6 rounded-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:scale-105">
+              <h3 className="text-xl font-bold text-primary mb-2">Cafeteria</h3>
+              <p className="text-gray-600">
+                The college cafeteria serves a variety of healthy and nutritious food options to keep students energized throughout the day. It is a great place for students to socialize and relax.
+              </p>
+            </div>
+
+            {/* Auditorium */}
+            <div className="bg-white shadow-lg p-6 rounded-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:scale-105">
+              <h3 className="text-xl font-bold text-primary mb-2">Auditorium</h3>
+              <p className="text-gray-600">
+                The college auditorium is a state-of-the-art facility, ideal for hosting seminars, workshops, conferences, cultural events, and student activities.
+              </p>
+            </div>
+
+            {/* Health Center */}
+            <div className="bg-white shadow-lg p-6 rounded-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:scale-105">
+              <h3 className="text-xl font-bold text-primary mb-2">Health Center</h3>
+              <p className="text-gray-600">
+                A fully equipped health center is available on campus to cater to the medical needs of students and staff. We ensure the well-being of our students with first-aid facilities and a trained nurse on call.
+              </p>
+            </div>
+
+            {/* Transportation */}
+            <div className="bg-white shadow-lg p-6 rounded-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:scale-105">
+              <h3 className="text-xl font-bold text-primary mb-2">Transportation</h3>
+              <p className="text-gray-600">
+                We provide transportation facilities for students and staff from various parts of the city, ensuring easy and safe commute to the campus.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
 
     </div>
