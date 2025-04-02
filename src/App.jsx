@@ -14,6 +14,7 @@ import ECEDepartment from './components/Departments/ECEDepartment';
 import ComputerDepartment from './components/Departments/ComputerDepartment';
 import GeneralDepartment from './components/Departments/GeneralDepartment';
 import Placement from './pages/Placement';
+import Admission from './pages/admission';
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
         {/* --------- */}
 
         <Route path="/placement" element={<Placement />} />
+        <Route path="/admission" element={<Admission />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
