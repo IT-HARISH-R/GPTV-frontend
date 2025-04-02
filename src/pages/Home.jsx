@@ -16,7 +16,7 @@ const Home = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const el = entry.target;
-          const target = el.getAttribute('data-target') || el.getAttribute('data-target-st');
+          const target = el.getAttribute('data-target') || el.getAttribute('data-target-students');
 
           const updateCount = (increment) => {
             let count = +el.innerText;
@@ -29,7 +29,7 @@ const Home = () => {
           };
 
           // Determine the increment for the count
-          const increment = target === el.getAttribute('data-target-st') ? 50 : 1;
+          const increment = target === el.getAttribute('data-target-students') ? 10 : 1;
           updateCount(increment);
 
           observer.unobserve(el);
@@ -162,44 +162,53 @@ const Home = () => {
 
 
       {/* Fun Facts Section */}
-      <section className="relative w-full bg-cover bg-center scrol-animate" style={{
-        backgroundImage: `url(https://gplucknow.co.in/public/user/assets/images/bg/bg2.jpg)`,
-        backgroundPosition: '50% -100px',
-        backgroundAttachment: 'fixed',
-      }}>
-        <div className="absolute inset-0 bg-black opacity-40"></div> {/* Overlay for better text visibility */}
-        <div className="container mx-auto py-20">
-          <div className="flex flex-wrap justify-between">
-            <div className="w-full sm:w-1/2 md:w-1/4 text-center mb-12 lg:mb-0">
-              <div className="funfact">
-                <i className="fa fa-chalkboard-teacher mt-5 text-[#3498db] text-5xl"></i>
-                <h2 className="counter text-white text-4xl font-bold mt-4" data-target="18">0</h2>
-                <h5 className="text-white text-uppercase font-medium">+ Courses</h5>
-              </div>
+      <section
+        className="relative w-full bg-cover bg-center scrol-animate"
+        style={{
+          backgroundImage: `url(https://gplucknow.co.in/public/user/assets/images/bg/bg2.jpg)`,
+          backgroundPosition: "50% -100px",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        {/* Overlay for better text visibility */}
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+
+        <div className="container mx-auto py-20 relative z-10">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-10 text-center">
+            {/* Course Count */}
+            <div className="funfact flex flex-col items-center">
+              <i className="fa fa-book text-[#3498db] text-5xl"></i>
+              <h2 className="counter text-white text-4xl font-bold mt-4" data-target="18">
+                0
+              </h2>
+              <h5 className="text-white uppercase font-medium">+ Courses</h5>
             </div>
 
-            <div className="w-full sm:w-1/2 md:w-1/4 text-center mb-12 lg:mb-0">
-              <div className="funfact">
-                <i className="fa fa-chalkboard-teacher mt-5 text-[#3498db] text-5xl"></i>
-                <h2 className="counter text-white text-4xl font-bold mt-4" data-target-st="2000">0</h2>
-                <h5 className="text-white text-uppercase font-medium">+ Students</h5>
-              </div>
+            {/* Students Count */}
+            <div className="funfact flex flex-col items-center">
+              <i className="fa fa-users text-[#3498db] text-5xl"></i>
+              <h2 className="counter text-white text-4xl font-bold mt-4" data-target-students="2000">
+                0
+              </h2>
+              <h5 className="text-white uppercase font-medium">+ Students</h5>
             </div>
 
-            <div className="w-full sm:w-1/2 md:w-1/4 text-center mb-12 lg:mb-0">
-              <div className="funfact">
-                <i className="fa fa-chalkboard-teacher mt-5 text-[#3498db] text-5xl"></i>
-                <h2 className="counter text-white text-4xl font-bold mt-4" data-target="30">0</h2>
-                <h5 className="text-white text-uppercase font-medium">+ Faculty</h5>
-              </div>
+            {/* Faculty Count */}
+            <div className="funfact flex flex-col items-center">
+              <i className="fa fa-chalkboard-teacher text-[#3498db] text-5xl"></i>
+              <h2 className="counter text-white text-4xl font-bold mt-4" data-target="30">
+                0
+              </h2>
+              <h5 className="text-white uppercase font-medium">+ Faculty</h5>
             </div>
 
-            <div className="w-full sm:w-1/2 md:w-1/4 text-center mb-12 lg:mb-0">
-              <div className="funfact">
-                <i className="fa fa-chalkboard-teacher mt-5 text-[#3498db] text-5xl"></i>
-                <h2 className="counter text-white text-4xl font-bold mt-4" data-target="70">0</h2>
-                <h5 className="text-white text-uppercase font-medium">+ Year of Establishment</h5>
-              </div>
+            {/* Year of Establishment */}
+            <div className="funfact flex flex-col items-center">
+              <i className="fa fa-building text-[#3498db] text-5xl"></i>
+              <h2 className="counter text-white text-4xl font-bold mt-4" data-target="70">
+                0
+              </h2>
+              <h5 className="text-white uppercase font-medium">+ Years of Establishment</h5>
             </div>
           </div>
         </div>
@@ -208,7 +217,7 @@ const Home = () => {
       <section className="flex flex-col lg:flex-row items-center justify-between p-10 container mx-auto space-y-8 lg:space-y-0 ">
         {/* Left side: Principal's Message */}
         <div className="w-full lg:w-1/2 pr-8 text-center lg:text-left ">
-          <h2 className="text-4xl font-bold  mb-4 font-sans text-secondary "><span className='text-primary'>Principal</span> Message</h2>
+          <h2 className="text-[23px] lg:text-4xl font-bold  mb-4 font-sans text-secondary "><span className='text-primary'>Principal</span> Message</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
             Welcome to our Government Polytechnic College. Our mission is to provide quality education
             and prepare students to meet the challenges of the modern world. We are committed to academic
