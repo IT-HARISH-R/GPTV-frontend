@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import '../App.css'
 import Footer from '../components/Footer';
+import { Link } from "react-router-dom";
 
 const Home = () => {
+
   useEffect(() => {
     const counters = document.querySelectorAll('.counter');
     const options = {
@@ -14,18 +16,20 @@ const Home = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const el = entry.target;
-          const target = el.hasAttribute('data-target') ? el.getAttribute('data-target') : el.getAttribute('data-target-st');
+          const target = el.getAttribute('data-target') || el.getAttribute('data-target-st');
+
           const updateCount = (increment) => {
             let count = +el.innerText;
             const targetCount = +target;
+
             if (count < targetCount) {
               el.innerText = count + increment;
-              setTimeout(() => updateCount(increment), 30);
+              setTimeout(() => updateCount(increment), target === el.getAttribute('data-target') ? 30 : 3);
             }
           };
 
           // Determine the increment for the count
-          const increment = target === el.getAttribute('data-target-st') ? 10 : 1;
+          const increment = target === el.getAttribute('data-target-st') ? 50 : 1;
           updateCount(increment);
 
           observer.unobserve(el);
@@ -40,6 +44,7 @@ const Home = () => {
       observer.disconnect();
     };
   }, []);
+
 
 
   // useEffect(() => {
@@ -83,9 +88,9 @@ const Home = () => {
           <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
             Empowering students with knowledge, skills, and a bright future.
           </p>
-          <a href="#learn-more" className="bg-gradient-to-r from-blue-600 to-blue-400 text-white py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform duration-300">
+          <Link to='/about' className="bg-gradient-to-r from-blue-600 to-blue-400 text-white py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform duration-300">
             Learn More
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -107,9 +112,9 @@ const Home = () => {
             <p className="text-lg text-gray-700 mb-5">
               A place where knowledge meets innovation. Join us in shaping a brighter future through high-quality education and hands-on learning experiences.
             </p>
-            <button className="bg-primary text-white py-2 px-6 rounded-lg hover:bg-secondary transition duration-300">
+            <Link to='/about' className="bg-primary text-white py-2 px-6 rounded-lg hover:bg-secondary transition duration-300">
               Know More
-            </button>
+            </Link>
           </div>
 
           <div className="lg:w-1/2 mt-8 lg:mt-0">
@@ -348,13 +353,11 @@ const Home = () => {
                 <h3 className="text-white font-sans text-left text-sm md:text-base font-light mt-0 mb-6">
                   This section will deal with all the information pertaining to a student such as personal, academic as well as digital document and student report.
                 </h3>
-                <a
+                <Link to='/sing'
                   className="bg-primary text-theme-color-2 font-semibold text-lg px-6 py-3 rounded-lg shadow-md transition duration-300 ease-in-out hover:bg-theme-color-2 hover:text-white mt-4 mb-6 inline-block"
-                  target="_blank"
-                  rel="noopener noreferrer"
                 >
                   Sign in →
-                </a>
+                </Link>
               </div>
             </div>
           </div>

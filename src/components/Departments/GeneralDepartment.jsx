@@ -2,6 +2,7 @@ import React from "react";
 
 const GeneralDepartment = () => {
   return (
+    <div className="bg-gray-50">
     <div className="container mx-auto px-6 py-12 bg-gray-50">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         <div className="bg-gray-800 text-white text-center py-6">
@@ -58,6 +59,7 @@ const GeneralDepartment = () => {
             >
               Learn More About General Engineering
             </a>
+          </div>
           </div>
         </div>
       </div>
