@@ -15,6 +15,8 @@ import ComputerDepartment from './components/Departments/ComputerDepartment';
 import GeneralDepartment from './components/Departments/GeneralDepartment';
 import Placement from './pages/Placement';
 import Admission from './pages/admission';
+import StudentCorner from './pages/StudentCorner';
+import AntiRagging from './pages/AntiRagging';
 
 const App = () => {
   return (
@@ -37,6 +39,8 @@ const App = () => {
 
         <Route path="/placement" element={<Placement />} />
         <Route path="/admission" element={<Admission />} />
+        <Route path="/student-corner" element={<StudentCorner />} />
+        <Route path="/anti-ragging" element={<AntiRagging />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

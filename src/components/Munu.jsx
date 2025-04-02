@@ -27,6 +27,9 @@ const Menu = () => {
                         <Link to="/student-corner" className="hover:text-yellow-400">Student Corner</Link>
                     </li>
                     <li>
+                        <Link to="/anti-ragging" className="hover:text-yellow-400">Anti Ragging</Link>
+                    </li>
+                    <li>
                         <Link to="/gallery" className="hover:text-yellow-400">Gallery</Link>
                     </li>
                     <li>
