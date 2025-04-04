@@ -10,7 +10,7 @@ const Placement = () => {
           <p className="text-lg sm:text-xl mt-3 italic text-blue-700">Empowering Students for a Successful Future</p>
         </div>
 
-        <div className="mt-10 space-y-10">
+        <div data-aos="fade-up" className="mt-10 space-y-10">
           <p className="text-gray-800 text-center text-lg sm:text-xl leading-relaxed">
             The Placement Cell at Government Polytechnic College, Vanavasi, connects students with industry leaders through training, mentorship, and recruitment programs.
           </p>
@@ -27,7 +27,7 @@ const Placement = () => {
             </ul>
           </div>
 
-          <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+          <div data-aos="fade-up" className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
             <h3 className="text-2xl font-bold text-blue-900">
               <span className="text-primary">Top</span> Hiring Companies
             </h3>
@@ -48,7 +48,7 @@ const Placement = () => {
             </div>
           </div>
 
-          <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+          <div data-aos="fade-up" className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
             <h3 className="text-2xl font-bold text-blue-900">
               <span className="text-primary">Alumni</span> Success Stories
             </h3>
@@ -57,7 +57,7 @@ const Placement = () => {
             </p>
           </div>
 
-          <div className="text-center mt-6">
+          <div data-aos="fade-up" className="text-center mt-6">
             <a
               href="/placement"
               className="inline-block px-8 py-3 bg-blue-800 text-white font-semibold text-lg rounded-full hover:bg-blue-900 transition duration-300 shadow-md transform hover:scale-105"

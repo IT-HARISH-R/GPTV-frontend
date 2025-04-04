@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
@@ -20,12 +20,20 @@ import AntiRagging from './pages/AntiRagging';
 import Banner from './components/Banner';
 import SignIn from './pages/SignIn';
 import Gallery from './pages/Gallery';
+import Contact from './pages/Contact';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const App = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
+
     <Router>
       {/* <Navbar /> Your Navbar */}
-      <Banner/>
+      <Banner />
       <Menu />
       <Routes>
         {/* Define Routes */}
@@ -46,6 +54,7 @@ const App = () => {
         <Route path="/student-corner" element={<StudentCorner />} />
         <Route path="/anti-ragging" element={<AntiRagging />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/contact" element={<Contact />} />
 
 
 

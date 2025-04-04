@@ -11,7 +11,7 @@ const Admission = () => {
                     </h2>
 
                     <div className="space-y-12">
-                        <section>
+                        <section data-aos="fade-up">
                             <h3 className="text-3xl font-bold text-blue-800 mb-4 font-sans"> <span className="text-primary">Courses</span> Offered</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {["Civil Engineering", "Computer Engineering", "Electrical and Electronics Engineering", "Electronics and Communication Engineering", "Mechanical Engineering", "Digital Manufacturing Technologies"].map((course, index) => (
@@ -22,13 +22,13 @@ const Admission = () => {
                             </div>
                         </section>
 
-                        <section>
+                        <section data-aos="fade-up">
                             <h3 className="text-3xl font-bold text-blue-800 mb-4">
                                 <span className="text-primary">Eligibility </span>Criteria</h3>
                             <p className="text-lg text-gray-700">Candidates must have passed the 10th standard (SSLC) from a recognized board. Admission is merit-based, considering the marks obtained in the 10th standard examination. No entrance exam is required.</p>
                         </section>
 
-                        <section>
+                        <section data-aos="fade-up">
                             <h3 className="text-3xl font-bold text-blue-800 mb-4"> <span className="text-primary">Admission </span> Process</h3>
                             <ul className="list-disc pl-6 text-lg text-gray-700 space-y-2">
                                 <li><span className="font-semibold">Application Form:</span> Available at the college office or downloadable from the official website.</li>
@@ -38,7 +38,7 @@ const Admission = () => {
                             </ul>
                         </section>
 
-                        <section>
+                        <section data-aos="fade-up">
                             <h3 className="text-3xl font-bold text-blue-800 mb-4">  <span className="text-primary">Documents </span> Required</h3>
                             <ul className="list-disc pl-6 text-lg text-gray-700 space-y-2">
                                 <li>10th Mark Sheet (SSLC) – Original & Photocopy</li>
@@ -50,12 +50,12 @@ const Admission = () => {
                             </ul>
                         </section>
 
-                        <section>
+                        <section data-aos="fade-up">
                             <h3 className="text-3xl font-bold text-blue-800 mb-4"> <span className="text-primary">Fee </span> Structure</h3>
                             <p className="text-lg text-gray-700">Tuition Fee: ₹6,471 per year (Approximate). Additional Examination & Lab Fees may apply.</p>
                         </section>
 
-                        <section>
+                        <section data-aos="fade-up">
                             <h3 className="text-3xl font-bold text-blue-800 mb-4"> <span className="text-primary"> Important</span> Dates</h3>
                             <ul className="list-disc pl-6 text-lg text-gray-700">
                                 <li>Application Start Date: To be announced</li>
@@ -64,7 +64,7 @@ const Admission = () => {
                             </ul>
                         </section>
 
-                        <section>
+                        <section data-aos="fade-up">
                             <h3 className="text-3xl font-bold text-blue-800 mb-4"> <span className="text-primary">Contact</span> Us</h3>
                             <p className="text-lg text-gray-700">
                                 📍 Government Polytechnic College, Vanavasi, Salem District, Tamil Nadu<br />

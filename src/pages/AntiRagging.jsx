@@ -59,8 +59,8 @@ const AntiRagging = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-900 to-gray-700 text-white p-6">
-      <div className="container mx-auto max-w-4xl bg-black bg-opacity-80 p-6 rounded-lg shadow-lg">
+    <div  className="min-h-screen bg-gradient-to-r from-gray-900 to-gray-700 text-white p-6">
+      <div data-aos="fade-up" className="container mx-auto max-w-4xl bg-black bg-opacity-80 p-6 rounded-lg shadow-lg">
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-6 text-yellow-400">
           Anti-Ragging Policy
         </h1>

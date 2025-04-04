@@ -33,7 +33,7 @@ const About = () => {
         <div>
             <section className="bg-fixed bg-cover bg-gray-50"
                 style={{ backgroundImage: "url('https://gplucknow.co.in/public/user/assets/images/pattern/p4.png')" }}>
-                <div className="container mx-auto px-4 py-12">
+                <div className="container mx-auto px-4 py-12" data-aos="fade-up">
                     <div className="grid md:grid-cols-2 gap-8">
                         {/* About College Section */}
                         <div>
@@ -62,7 +62,7 @@ const About = () => {
                     </div>
 
                     {/* Highlights Section */}
-                    <div className="mt-12">
+                    <div className="mt-12" data-aos="fade-up">
                         <h6 className="text-gray-500 uppercase text-lg tracking-wider">Highlights</h6>
                         <h2 className="text-3xl font-bold uppercase border-b-4 border-indigo-600 pb-2">Government Polytechnic Vanavasi</h2>
 

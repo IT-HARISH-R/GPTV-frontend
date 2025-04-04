@@ -47,34 +47,12 @@ const Home = () => {
 
 
 
-  // useEffect(() => {
-  //   const sections = document.querySelectorAll('.scroll-animate');
-  //   const options = {
-  //     rootMargin: '0px 0px -50px 0px', // Adjusts trigger point
-  //     threshold: 0.5, // When 50% of the element is visible
-  //   };
-
-  //   const handleIntersect = (entries, observer) => {
-  //     entries.forEach(entry => {
-  //       if (entry.isIntersecting) {
-  //         entry.target.classList.add('animate'); // Add animation class when visible
-  //         observer.unobserve(entry.target); // Stop observing after the animation starts
-  //       }
-  //     });
-  //   };
-
-  //   const observer = new IntersectionObserver(handleIntersect, options);
-  //   sections.forEach(section => observer.observe(section));
-
-  //   return () => {
-  //     observer.disconnect();
-  //   };
-  // }, []);
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center">
       {/* Welcome Section with Background Image */}
       <section
+        data-aos="fade-up"
         className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
         style={{
           backgroundImage: `url(https://www.mymathews.com/media/institute_banner/Government_Polytechnic_College_Vanavasi_BANNER.JPG)`,
@@ -97,7 +75,9 @@ const Home = () => {
 
 
       {/* About Section */}
-      <section className="bg-gray-50 py-12 px-6 w-full">
+      <section
+        data-aos="fade-up"
+        className="bg-gray-50 py-12 px-6 w-full">
         <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
           <div className="lg:w-1/2 text-center lg:text-left">
             <h2 className="text-3xl font-semibold text-primary mb-4 font-sans">
@@ -128,7 +108,8 @@ const Home = () => {
       </section>
 
       {/* Courses Section */}
-      <section className="bt-12 w-full p-6  bg-gray-50">
+      <section data-aos="fade-up"
+        className="bt-12 w-full p-6  bg-gray-50">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-semibold text-primary mb-4 font-sans">Our Courses</h2>
           <p className="text-lg text-gray-700 mb-6 max-w-3xl mx-auto">
@@ -162,7 +143,8 @@ const Home = () => {
 
 
       {/* Fun Facts Section */}
-      <section
+      <section data-aos="fade-up"
+
         className="relative w-full bg-cover bg-center scrol-animate"
         style={{
           backgroundImage: `url(https://gplucknow.co.in/public/user/assets/images/bg/bg2.jpg)`,
@@ -214,7 +196,8 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="flex flex-col lg:flex-row items-center justify-between p-10 container mx-auto space-y-8 lg:space-y-0 ">
+      <section data-aos="fade-up"
+        className="flex flex-col lg:flex-row items-center justify-between p-10 container mx-auto space-y-8 lg:space-y-0 ">
         {/* Left side: Principal's Message */}
         <div className="w-full lg:w-1/2 pr-8 text-center lg:text-left ">
           <h2 className="text-[23px] lg:text-4xl font-bold  mb-4 font-sans text-secondary "><span className='text-primary'>Principal</span> Message</h2>
@@ -244,7 +227,8 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="mt-12 p-6 w-full bg-gray-50 pb-10 ">
+      <section data-aos="fade-up"
+        className="mt-12 p-6 w-full bg-gray-50 pb-10 ">
         <div className='container mx-auto'>
           <div className="text-center mb-8">
             <h2 className="text-3xl font-semibold text-primary mb-4 font-sans">Our <span className='text-secondary'>Facilities</span></h2>
@@ -337,7 +321,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section
+      <section data-aos="fade-up"
         className="relative bg-cover bg-center pt-16 pb-28 w-full opacity-90"
         style={{
           backgroundImage:

@@ -9,7 +9,7 @@ const Departments = () => {
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-12 font-serif uppercase tracking-wide">
           Our Departments
         </h1>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div data-aos="fade-up" className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {/* Civil Engineering Department */}
           <div className="bg-white p-8 rounded-2xl shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl border-t-4 border-blue-500">
             <h2 className="text-2xl font-bold text-center mb-4 text-blue-600">Civil Engineering</h2>
@@ -22,7 +22,7 @@ const Departments = () => {
           </div>
 
           {/* Mechanical Engineering Department */}
-          <div className="bg-white p-8 rounded-2xl shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl border-t-4 border-red-500">
+          <div data-aos="fade-up" className="bg-white p-8 rounded-2xl shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl border-t-4 border-red-500">
             <h2 className="text-2xl font-bold text-center mb-4 text-red-600">Mechanical Engineering</h2>
             <p className="text-gray-600 mb-4 text-justify">
               The Mechanical Engineering department provides deep insights into thermodynamics, mechanics, and manufacturing processes.
@@ -33,7 +33,7 @@ const Departments = () => {
           </div>
 
           {/* Electrical and Electronics Engineering Department */}
-          <div className="bg-white p-8 rounded-2xl shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl border-t-4 border-yellow-500">
+          <div data-aos="fade-up" className="bg-white p-8 rounded-2xl shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl border-t-4 border-yellow-500">
             <h2 className="text-2xl font-bold text-center mb-4 text-yellow-600">Electrical & Electronics Engineering</h2>
             <p className="text-gray-600 mb-4 text-justify">
               The Electrical & Electronics Engineering department focuses on power systems, electrical circuits, and electronics technology.
@@ -44,7 +44,7 @@ const Departments = () => {
           </div>
 
           {/* Electronics and Communication Engineering Department */}
-          <div className="bg-white p-8 rounded-2xl shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl border-t-4 border-purple-500">
+          <div data-aos="fade-up" className="bg-white p-8 rounded-2xl shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl border-t-4 border-purple-500">
             <h2 className="text-2xl font-bold text-center mb-4 text-purple-600">Electronics & Communication Engineering</h2>
             <p className="text-gray-600 mb-4 text-justify">
               The ECE department focuses on the study of electronics, circuits, and communications technology, preparing students for a tech-driven future.
@@ -55,7 +55,7 @@ const Departments = () => {
           </div>
 
           {/* Computer Engineering Department */}
-          <div className="bg-white p-8 rounded-2xl shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl border-t-4 border-green-500">
+          <div data-aos="fade-up" className="bg-white p-8 rounded-2xl shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl border-t-4 border-green-500">
             <h2 className="text-2xl font-bold text-center mb-4 text-green-600">Computer Engineering</h2>
             <p className="text-gray-600 mb-4 text-justify">
               The Computer Engineering department offers a robust curriculum focusing on software development, programming languages, and computer systems.
@@ -66,7 +66,7 @@ const Departments = () => {
           </div>
 
           {/* General Engineering Department */}
-          <div className="bg-white p-8 rounded-2xl shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl border-t-4 border-indigo-500">
+          <div data-aos="fade-up" className="bg-white p-8 rounded-2xl shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl border-t-4 border-indigo-500">
             <h2 className="text-2xl font-bold text-center mb-4 text-indigo-600">General Engineering</h2>
             <p className="text-gray-600 mb-4 text-justify">
               The General Engineering department provides a well-rounded education in basic engineering principles, covering various aspects of different engineering fields.
