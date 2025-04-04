@@ -27,6 +27,8 @@ import 'aos/dist/aos.css';
 
 import { ToastContainer } from "react-toastify";
 import GalleryUpload from './pages/GalleryUpload';
+import Profile from './pages/Profile';
+import Login from './components/login';
 
 
 const App = () => {
@@ -65,10 +67,12 @@ const App = () => {
 
 
         <Route path="/Signup" element={<SignIn />} />
+        <Route path="/login" element={<Login />} />
 
 
-        
+        {/* root not fount */}
         <Route path="/galleryupload" element={<GalleryUpload />} />
+        <Route path="/profile" element={<Profile />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
