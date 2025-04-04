@@ -362,7 +362,7 @@ const Home = () => {
                 <h3 className="text-white font-sans text-left text-sm md:text-base font-light mt-0 mb-6">
                   This section will deal with all the information pertaining to a student such as personal, academic as well as digital document and student report.
                 </h3>
-                <Link to='/sing'
+                <Link to='/Signup'
                   className="bg-primary text-theme-color-2 font-semibold text-lg px-6 py-3 rounded-lg shadow-md transition duration-300 ease-in-out hover:bg-theme-color-2 hover:text-white mt-4 mb-6 inline-block"
                 >
                   Sign in →

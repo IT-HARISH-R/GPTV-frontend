@@ -17,8 +17,9 @@ import Placement from './pages/Placement';
 import Admission from './pages/admission';
 import StudentCorner from './pages/StudentCorner';
 import AntiRagging from './pages/AntiRagging';
-import Sing from './pages/Sing';
 import Banner from './components/Banner';
+import SignIn from './pages/SignIn';
+import Gallery from './pages/Gallery';
 
 const App = () => {
   return (
@@ -44,10 +45,11 @@ const App = () => {
         <Route path="/admission" element={<Admission />} />
         <Route path="/student-corner" element={<StudentCorner />} />
         <Route path="/anti-ragging" element={<AntiRagging />} />
+        <Route path="/gallery" element={<Gallery />} />
 
 
 
-        <Route path="/sing" element={<Sing />} />
+        <Route path="/Signup" element={<SignIn />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
