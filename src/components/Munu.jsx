@@ -20,7 +20,7 @@ const Menu = () => {
 
             {/* Navigation Links */}
             <ul
-                className={`fixed top-0 left-0 w-full h-full bg-gray-900 lg:relative lg:flex lg:bg-transparent 
+                className={`fixed top-0 left-0 w-full py-4 bg-gray-900 lg:relative lg:flex lg:bg-transparent 
                 flex-col items-center justify-center text-lg font-semibold 
                 transition-transform duration-300 ease-in-out 
                 ${isOpen ? "translate-x-0" : "-translate-x-full"} 
@@ -37,7 +37,7 @@ const Menu = () => {
                     { path: "/gallery", label: "Gallery" },
                     { path: "/contact", label: "Contact Us" }
                 ].map((item, index) => (
-                    <li key={index} className="relative group p-2">
+                    <li key={index} className="relative group">
                         <Link
                             to={item.path}
                             className="hover:text-yellow-400 transition-colors duration-300 ease-in-out relative truncate block w-full text-center lg:w-auto px-2"

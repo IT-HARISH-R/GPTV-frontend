@@ -52,14 +52,13 @@ const Home = () => {
     <div className="min-h-screen flex flex-col justify-center items-center">
       {/* Welcome Section with Background Image */}
       <section
-        data-aos="fade-up"
         className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
         style={{
           backgroundImage: `url(https://www.mymathews.com/media/institute_banner/Government_Polytechnic_College_Vanavasi_BANNER.JPG)`,
         }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div> {/* Darker overlay for better contrast */}
-        <div className="relative z-10 text-center text-white px-6">
+        <div data-aos="fade-up" className="relative z-10 text-center text-white px-6">
           <h1 className="text-2xl sm:text-5xl font-bold mb-6 drop-shadow-lg">
             Welcome to Government Polytechnic College Vanavasi, Salem
           </h1>

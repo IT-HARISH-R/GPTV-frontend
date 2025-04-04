@@ -25,6 +25,9 @@ import Contact from './pages/Contact';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import { ToastContainer } from "react-toastify";
+
+
 const App = () => {
   useEffect(() => {
     AOS.init();
@@ -32,6 +35,8 @@ const App = () => {
   return (
 
     <Router>
+            <ToastContainer />
+
       {/* <Navbar /> Your Navbar */}
       <Banner />
       <Menu />

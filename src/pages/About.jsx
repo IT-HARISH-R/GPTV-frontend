@@ -34,7 +34,7 @@ const About = () => {
             <section className="bg-fixed bg-cover bg-gray-50"
                 style={{ backgroundImage: "url('https://gplucknow.co.in/public/user/assets/images/pattern/p4.png')" }}>
                 <div className="container mx-auto px-4 py-12" data-aos="fade-up">
-                    <div className="grid md:grid-cols-2 gap-8">
+                    <div className="grid md:grid-cols-2 gap-8 items-center">
                         {/* About College Section */}
                         <div>
                             <div className="section-title">
