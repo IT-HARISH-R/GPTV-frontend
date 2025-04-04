@@ -11,6 +11,9 @@ const galleryServices = {
             timeout: 20000, 
             // withCredentials: true,
         });
+    },
+    getGallery: async()=>{
+        return await instance.get('/gallery');
     }
 }
 

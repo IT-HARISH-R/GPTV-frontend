@@ -77,7 +77,7 @@ const Contact = () => {
                                 <FiPhone className="text-blue-600 text-2xl mr-4" />
                                 <div>
                                     <h4 className="text-lg font-semibold text-gray-800">OUR CONTACT NUMBER</h4>
-                                    <p className="text-gray-700 mt-1">+91 98765 43210</p>
+                                    <p className="text-gray-700 mt-1"> 04298266177 </p>
                                 </div>
                             </div>
 
