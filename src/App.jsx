@@ -26,6 +26,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 import { ToastContainer } from "react-toastify";
+import GalleryUpload from './pages/GalleryUpload';
 
 
 const App = () => {
@@ -64,6 +65,10 @@ const App = () => {
 
 
         <Route path="/Signup" element={<SignIn />} />
+
+
+        
+        <Route path="/galleryupload" element={<GalleryUpload />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
