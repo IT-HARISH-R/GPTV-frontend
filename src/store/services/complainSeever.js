@@ -8,6 +8,9 @@ const complainSeever = {
     getComplaints: async () => {
         return await instance.get('/complaints');
     },
+    deletebyid: async (id) => {
+        return await instance.delete(`/delete/${id}`);
+    },
 
 }
 

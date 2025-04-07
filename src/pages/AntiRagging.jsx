@@ -22,7 +22,7 @@ const AntiRagging = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); 
+    setLoading(true);
 
     const dataToSubmit = {
       ...formData,
@@ -30,6 +30,7 @@ const AntiRagging = () => {
     };
 
     try {
+
       const data = await complainSeever.fileComplaint(dataToSubmit);
       toast.success("Complaint submitted successfully!", {
         position: "top-center",
@@ -75,7 +76,7 @@ const AntiRagging = () => {
                 value={formData.name}
                 onChange={handleChange}
                 className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-yellow-400"
-                disabled={loading} 
+                disabled={loading}
               />
             </div>
           )}
@@ -88,7 +89,7 @@ const AntiRagging = () => {
               onChange={handleChange}
               className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-yellow-400"
               required
-              disabled={loading} 
+              disabled={loading}
             >
               <option value="">Select your department</option>
               <option value="CIVIL">Civil Engineering</option>
@@ -108,7 +109,7 @@ const AntiRagging = () => {
               className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-yellow-400"
               rows="4"
               required
-              disabled={loading} 
+              disabled={loading}
             ></textarea>
           </div>
 
@@ -126,10 +127,9 @@ const AntiRagging = () => {
 
           <button
             type="submit"
-            disabled={loading} 
-            className={`w-full ${
-              loading ? "bg-red-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"
-            } text-white py-2 rounded-lg font-semibold transition-all duration-200`}
+            disabled={loading}
+            className={`w-full ${loading ? "bg-red-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"
+              } text-white py-2 rounded-lg font-semibold transition-all duration-200`}
           >
             {loading ? "Submitting..." : "Submit Complaint"}
           </button>

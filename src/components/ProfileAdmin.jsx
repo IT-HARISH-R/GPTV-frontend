@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/features/userSlice";
-import QuotesUpload from "./profile/QuotesUpload";
 import authServices from "../store/services/authServices";
 import { toast } from "react-toastify";
-import AntiRagging from "./profile/AntiRagging";
+import AntiProfile from "./profile/AntiProfile";
+import { Menu, X } from "lucide-react"; // Optional icons
 
 const ProfileAdmin = () => {
   const [employee, setEmployee] = useState({ name: "", email: "" });
-  const [complaints, setComplaints] = useState([]);
   const [activeSection, setActiveSection] = useState("dashboard");
-  const [loading, setLoading] = useState(false); // 🔄 loading state
+  const [loading, setLoading] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const dispatch = useDispatch();
 
   const handleInput = (e) => {
@@ -31,23 +31,6 @@ const ProfileAdmin = () => {
     }
   };
 
-  // const [complaints, setComplaints] = useState([]);
-
-const handleDeleteComplaint = (id) => {
-  
-  const updated = complaints.filter((c) => c.id !== id);
-  setComplaints(updated);
-};
-
-
-  // useEffect(() => {
-  //   const fakeComplaints = [
-  //     { id: 1, text: "Senior forced us to buy snacks.", date: "2025-04-01" },
-  //     { id: 2, text: "Verbal abuse near hostel.", date: "2025-04-03" },
-  //   ];
-  //   setComplaints(fakeComplaints);
-  // }, []);
-
   const logout = () => {
     localStorage.clear();
     dispatch(setUser(null));
@@ -56,64 +39,59 @@ const handleDeleteComplaint = (id) => {
   const menuItems = [
     { id: "dashboard", label: "Dashboard" },
     { id: "create", label: "Create Employee" },
-    // { id: "rankers", label: "20 Rankers" },
-    // { id: "god", label: "God Quotes" },
   ];
 
-  
   return (
     <div className="min-h-screen flex bg-gray-100 font-sans">
-      {/* Sidebar */}
-      <div className="w-64 bg-gradient-to-b from-gray-900 to-gray-700 text-white p-6 space-y-6 shadow-md">
-        <h2 className="text-2xl font-bold text-center">Admin Panel</h2>
+      {/* Mobile Nav Toggle */}
+      <div className="md:hidden fixed top-4 left-4 z-50">
+        <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2 bg-gray-800 text-white rounded-full">
+          {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
 
-        <nav className="space-y-2">
+      {/* Sidebar */}
+      <div
+        className={`fixed md:relative top-0 left-0 z-[200] w-64 bg-gradient-to-b from-gray-900 to-gray-700 text-white shadow-md h-full transform transition-transform duration-300 
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
+      >
+        <div className="p-6 border-b border-gray-600 bg-gray-900">
+          <h2 className="text-2xl font-bold text-center">Admin Panel</h2>
+        </div>
+        <nav className="px-4 py-6 space-y-2 overflow-y-auto h-[calc(100vh-4rem)]">
           {menuItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => setActiveSection(item.id)}
-              className={`w-full text-left p-3 rounded-lg transition duration-200 
-                ${activeSection === item.id
-                  ? "bg-blue-600 font-semibold shadow-inner"
-                  : "hover:bg-gray-600"
-                }`}
+              onClick={() => {
+                setActiveSection(item.id);
+                setSidebarOpen(false); // auto-close on mobile
+              }}
+              className={`w-full text-left p-3 rounded-lg transition-all duration-200 
+                ${activeSection === item.id ? "bg-blue-600 font-semibold shadow-inner" : "hover:bg-gray-600"}`}
             >
               {item.label}
             </button>
           ))}
-
           <button
             onClick={logout}
-            className="w-full text-left p-3 rounded-lg bg-red-600 hover:bg-red-700 mt-6 transition duration-200"
+            className="w-full text-left p-3 rounded-lg bg-red-600 hover:bg-red-700 transition duration-200 mt-4"
           >
             Logout
           </button>
         </nav>
       </div>
 
+      {/* Overlay for Mobile */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-40 z-30 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        ></div>
+      )}
+
       {/* Main Content */}
-      <div className="flex-1 p-8">
-        {activeSection === "dashboard" && (
-          <>
-            <AntiRagging
-              complaints={complaints}
-              handleDelete={handleDeleteComplaint}
-            />
-            {/* <h1 className="text-3xl font-bold text-blue-800 mb-6">Anti-Ragging Complaints</h1>
-            <div className="space-y-4">
-              {complaints.length === 0 ? (
-                <p className="text-gray-600">No complaints found.</p>
-              ) : (
-                complaints.map((c) => (
-                  <div key={c.id} className="border-l-4 border-red-500 bg-red-50 p-4 shadow rounded">
-                    <p className="text-gray-800 font-medium">{c.text}</p>
-                    <p className="text-sm text-gray-500 mt-1">{c.date}</p>
-                  </div>
-                ))
-              )}
-            </div> */}
-          </>
-        )}
+      <div className="flex-1 ml-0 md:ml-64 p-4 md:p-8 overflow-y-auto">
+        {activeSection === "dashboard" && <AntiProfile />}
 
         {activeSection === "create" && (
           <div className="bg-white shadow-lg p-6 rounded-xl max-w-lg mx-auto">
@@ -148,30 +126,6 @@ const handleDeleteComplaint = (id) => {
             </form>
           </div>
         )}
-
-        {/* {activeSection === "rankers" && (
-          <div className="bg-white p-6 shadow-lg rounded-xl">
-            <h2 className="text-2xl font-semibold text-purple-700 mb-4">Top 20 Rank Holders</h2>
-            <ul className="list-decimal pl-6 text-gray-700 space-y-1">
-              {[...Array(20)].map((_, idx) => (
-                <li key={idx}>Student {idx + 1} - Dept of XYZ</li>
-              ))}
-            </ul>
-          </div>
-        )} */}
-
-        {/* {activeSection === "god" && (
-          <>
-            <QuotesUpload />
-            <div className="bg-white p-6 mt-6 shadow-lg rounded-xl">
-              <h2 className="text-2xl font-semibold text-green-700 mb-2">Motivational Quotes</h2>
-              <div className="space-y-3 text-gray-700 italic">
-                <p>“Have faith in God and yourself — success will follow.”</p>
-                <p>“Let your work be your worship.”</p>
-              </div>
-            </div>
-          </>
-        )} */}
       </div>
     </div>
   );
