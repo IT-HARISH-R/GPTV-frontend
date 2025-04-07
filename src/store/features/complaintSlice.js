@@ -2,14 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const complaintSlice = createSlice({
     name: "complaints",
-    initialState: [],
+    initialState: {
+        complaint: null,
+    },
     reducers: {
         addComplaint: (state, action) => {
-            state.push(action.payload);
+
+            state.complaint = action.payload
+
         },
-        removeComplaint: (state, action) => {
-            return state.filter(complaint => complaint.id !== action.payload);
-        }
+        // removeComplaint: (state, action) => {
+        //     return state.filter(complaint => complaint.id !== action.payload);
+        // }
     }
 });
 

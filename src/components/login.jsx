@@ -1,64 +1,70 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setUser } from '../store/features/userSlice'
 import authServices from '../store/services/authServices'
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user.user);
 
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-  })
-  const [error, setError] = useState('')
+  });
+
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }))
-  }
+    }));
+  };
+
+  const fetchProfile = async () => {
+    try {
+      setLoading(true);
+      const token = localStorage.getItem('token');
+      if (!token) throw new Error('Token missing');
+
+      const response = await authServices.me();
+      dispatch(setUser(response.data));
+      navigate('/profile');
+    } catch (err) {
+      console.error(err.message || "Failed to fetch profile.");
+      navigate('/login');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token && !user) {
+      fetchProfile();
+    }
+  }, []);
 
   const handleLogin = async (e) => {
-    e.preventDefault()
-    setError('')
+    e.preventDefault();
+    setError('');
 
     try {
-      const res = await authServices.login(formData)
-      console.log(res)
+      const res = await authServices.login(formData);
       if (res.data.status) {
         localStorage.setItem('token', res.data.token);
-
-        const fetchProfile = async () => {
-          try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-              throw new Error('Token missing. Please log in.');
-            }
-            
-            const response = await authServices.me()
-            dispatch(setUser(response.data))
-            toast.success('Login successfully !');
-
-            navigate('/profile')
-          } catch (err) {
-            setError(err.message || 'Failed to fetch profile.');
-            // console.error(err);
-          }
-
-        }
-
-        fetchProfile()
-
+        toast.success('Login successfully!');
+        fetchProfile();
       }
     } catch (err) {
-      setError(err.response?.data?.message)
+      setError(err.response?.data?.message || 'Login failed');
     }
-  }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -93,13 +99,14 @@ const Login = () => {
 
         <button
           type="submit"
+          disabled={loading}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md"
         >
-          Login
+          {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

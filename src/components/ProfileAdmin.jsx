@@ -4,41 +4,49 @@ import { setUser } from "../store/features/userSlice";
 import QuotesUpload from "./profile/QuotesUpload";
 import authServices from "../store/services/authServices";
 import { toast } from "react-toastify";
+import AntiRagging from "./profile/AntiRagging";
 
 const ProfileAdmin = () => {
   const [employee, setEmployee] = useState({ name: "", email: "" });
   const [complaints, setComplaints] = useState([]);
   const [activeSection, setActiveSection] = useState("dashboard");
+  const [loading, setLoading] = useState(false); // 🔄 loading state
   const dispatch = useDispatch();
 
   const handleInput = (e) => {
     setEmployee({ ...employee, [e.target.name]: e.target.value });
   };
+
   const handleCreateEmployee = async (e) => {
     e.preventDefault();
-    let status;
+    setLoading(true);
     try {
-
-      console.log(employee)
       const res = await authServices.createEmployee(employee);
-      toast.success(res.data.message)
+      toast.success(res.data.message);
+      setEmployee({ name: "", email: "" });
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Failed to create employee");
+    } finally {
+      setLoading(false);
     }
-    catch (err) {
-      toast.error(err.response.data.message)
-    }
-
-    // const newEmployeeID = "EMP" + Date.now();
-    // alert(`Employee Created: ${employee.name} - ${newEmployeeID}`);
-    // setEmployee({ name: "", email: "" });
   };
 
-  useEffect(() => {
-    const fakeComplaints = [
-      { id: 1, text: "Senior forced us to buy snacks.", date: "2025-04-01" },
-      { id: 2, text: "Verbal abuse near hostel.", date: "2025-04-03" },
-    ];
-    setComplaints(fakeComplaints);
-  }, []);
+  // const [complaints, setComplaints] = useState([]);
+
+const handleDeleteComplaint = (id) => {
+  
+  const updated = complaints.filter((c) => c.id !== id);
+  setComplaints(updated);
+};
+
+
+  // useEffect(() => {
+  //   const fakeComplaints = [
+  //     { id: 1, text: "Senior forced us to buy snacks.", date: "2025-04-01" },
+  //     { id: 2, text: "Verbal abuse near hostel.", date: "2025-04-03" },
+  //   ];
+  //   setComplaints(fakeComplaints);
+  // }, []);
 
   const logout = () => {
     localStorage.clear();
@@ -47,11 +55,12 @@ const ProfileAdmin = () => {
 
   const menuItems = [
     { id: "dashboard", label: "Dashboard" },
-    { id: "rankers", label: "20 Rankers" },
-    { id: "god", label: "God Quotes" },
     { id: "create", label: "Create Employee" },
+    // { id: "rankers", label: "20 Rankers" },
+    // { id: "god", label: "God Quotes" },
   ];
 
+  
   return (
     <div className="min-h-screen flex bg-gray-100 font-sans">
       {/* Sidebar */}
@@ -86,7 +95,11 @@ const ProfileAdmin = () => {
       <div className="flex-1 p-8">
         {activeSection === "dashboard" && (
           <>
-            <h1 className="text-3xl font-bold text-blue-800 mb-6">Anti-Ragging Complaints</h1>
+            <AntiRagging
+              complaints={complaints}
+              handleDelete={handleDeleteComplaint}
+            />
+            {/* <h1 className="text-3xl font-bold text-blue-800 mb-6">Anti-Ragging Complaints</h1>
             <div className="space-y-4">
               {complaints.length === 0 ? (
                 <p className="text-gray-600">No complaints found.</p>
@@ -98,7 +111,7 @@ const ProfileAdmin = () => {
                   </div>
                 ))
               )}
-            </div>
+            </div> */}
           </>
         )}
 
@@ -126,15 +139,17 @@ const ProfileAdmin = () => {
               />
               <button
                 type="submit"
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 w-full"
+                disabled={loading}
+                className={`bg-blue-600 text-white px-6 py-2 rounded-lg w-full transition duration-200 
+                  ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700"}`}
               >
-                Create Employee
+                {loading ? "Creating..." : "Create Employee"}
               </button>
             </form>
           </div>
         )}
 
-        {activeSection === "rankers" && (
+        {/* {activeSection === "rankers" && (
           <div className="bg-white p-6 shadow-lg rounded-xl">
             <h2 className="text-2xl font-semibold text-purple-700 mb-4">Top 20 Rank Holders</h2>
             <ul className="list-decimal pl-6 text-gray-700 space-y-1">
@@ -143,9 +158,9 @@ const ProfileAdmin = () => {
               ))}
             </ul>
           </div>
-        )}
+        )} */}
 
-        {activeSection === "god" && (
+        {/* {activeSection === "god" && (
           <>
             <QuotesUpload />
             <div className="bg-white p-6 mt-6 shadow-lg rounded-xl">
@@ -156,7 +171,7 @@ const ProfileAdmin = () => {
               </div>
             </div>
           </>
-        )}
+        )} */}
       </div>
     </div>
   );

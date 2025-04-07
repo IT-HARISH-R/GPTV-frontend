@@ -10,6 +10,8 @@ const AntiRagging = () => {
     anonymous: false,
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -20,6 +22,7 @@ const AntiRagging = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); 
 
     const dataToSubmit = {
       ...formData,
@@ -44,6 +47,8 @@ const AntiRagging = () => {
         position: "top-center",
         autoClose: 3000,
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -70,20 +75,30 @@ const AntiRagging = () => {
                 value={formData.name}
                 onChange={handleChange}
                 className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-yellow-400"
+                disabled={loading} 
               />
             </div>
           )}
+
           <div>
             <label className="block text-sm font-semibold mb-1">Department</label>
-            <input
-              type="text"
+            <select
               name="department"
               value={formData.department}
               onChange={handleChange}
               className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-yellow-400"
               required
-            />
+              disabled={loading} 
+            >
+              <option value="">Select your department</option>
+              <option value="CIVIL">Civil Engineering</option>
+              <option value="MECH">Mechanical Engineering</option>
+              <option value="EEE">Electrical and Electronics Engineering</option>
+              <option value="ECE">Electronics and Communication Engineering</option>
+              <option value="CSE">Computer Science Engineering</option>
+            </select>
           </div>
+
           <div>
             <label className="block text-sm font-semibold mb-1">Incident Details</label>
             <textarea
@@ -93,8 +108,10 @@ const AntiRagging = () => {
               className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-yellow-400"
               rows="4"
               required
+              disabled={loading} 
             ></textarea>
           </div>
+
           <div className="flex items-center">
             <input
               type="checkbox"
@@ -102,16 +119,22 @@ const AntiRagging = () => {
               checked={formData.anonymous}
               onChange={handleChange}
               className="mr-2 w-5 h-5"
+              disabled={loading}
             />
             <label className="text-sm">Submit anonymously</label>
           </div>
+
           <button
             type="submit"
-            className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-semibold transition-all duration-200"
+            disabled={loading} 
+            className={`w-full ${
+              loading ? "bg-red-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"
+            } text-white py-2 rounded-lg font-semibold transition-all duration-200`}
           >
-            Submit Complaint
+            {loading ? "Submitting..." : "Submit Complaint"}
           </button>
         </form>
+
         <div className="mt-6 text-center text-sm">
           <p>Need help? Contact the <span className="text-yellow-400">Anti-Ragging Committee</span> at:</p>
           <p className="text-yellow-300">Helpline: [Provide Helpline] | Email: [Provide Email]</p>
