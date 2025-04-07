@@ -35,7 +35,8 @@ const Menu = () => {
                     { path: "/student-corner", label: "Student Corner" },
                     { path: "/anti-ragging", label: "Anti Ragging" },
                     { path: "/gallery", label: "Gallery" },
-                    { path: "/contact", label: "Contact Us" }
+                    { path: "/contact", label: "Contact Us" },
+                    { path: "/profile", label: "profile" }
                 ].map((item, index) => (
                     <li key={index} className="relative group">
                         <Link

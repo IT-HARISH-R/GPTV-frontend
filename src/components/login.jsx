@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setUser } from '../store/features/userSlice'
 import authServices from '../store/services/authServices'
+import { toast } from "react-toastify";
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -29,8 +30,31 @@ const Login = () => {
     try {
       const res = await authServices.login(formData)
       console.log(res)
-      dispatch(setUser(res.data))
-      navigate('/profile')
+      if (res.data.status) {
+        localStorage.setItem('token', res.data.token);
+
+        const fetchProfile = async () => {
+          try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+              throw new Error('Token missing. Please log in.');
+            }
+            
+            const response = await authServices.me()
+            dispatch(setUser(response.data))
+            toast.success('Login successfully !');
+
+            navigate('/profile')
+          } catch (err) {
+            setError(err.message || 'Failed to fetch profile.');
+            // console.error(err);
+          }
+
+        }
+
+        fetchProfile()
+
+      }
     } catch (err) {
       setError(err.response?.data?.message)
     }

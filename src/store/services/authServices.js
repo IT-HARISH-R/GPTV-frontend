@@ -7,15 +7,26 @@ const authServices = {
     },
     login: async (data) => {
 
-         
-    return await instance.post('/login', data);
-},
-    logout: async () => {
-        return await instance.get('/auth/logout');
+
+        return await instance.post('/login', data);
     },
-        me: async () => {
-            return await instance.get('/auth/me');
-        }
+    logout: async () => {
+
+        // const dispatch = useDispatch()
+        // const token = localStorage.clear('token');
+        // console.log(token)
+        // dispatch(setUser(null))
+
+
+        // return await instance.get('/logout');
+    },
+    me: async () => {
+
+        return await instance.get('/me');
+    },
+    createEmployee: async(data)=>{
+        return await instance.post('/createEmployee',data)
+    }
 }
 
 export default authServices;
