@@ -7,7 +7,7 @@ const Menu = () => {
 
     return (
         
-        <nav className="sticky top-0 z-[100] bg-gray-900 text-white p-4 shadow-lg">
+        <nav className="sticky top-0 md:z-[250] z-[100] bg-gray-900 text-white 2xl:px-6  py-4 shadow-lg">
             {/* Mobile Menu Button */}
             <div className="flex justify-between items-center lg:hidden">
                 <button
@@ -20,11 +20,11 @@ const Menu = () => {
 
             {/* Navigation Links */}
             <ul
-                className={`fixed top-0 left-0 w-full py-4 bg-gray-900 lg:relative lg:flex lg:bg-transparent 
+                className={`fixed  top-0 left-0 w-full py-4 bg-gray-900 lg:relative lg:flex lg:bg-transparent 
                 flex-col items-center justify-center text-lg font-semibold 
                 transition-transform duration-300 ease-in-out 
                 ${isOpen ? "translate-x-0" : "-translate-x-full"} 
-                lg:translate-x-0 lg:flex-row lg:justify-between lg:w-full lg:px-4 lg:py-2`}
+                lg:translate-x-0 lg:flex-row lg:justify-between lg:w-full lg:px-2 lg:py-2 lg:text-xs xl:text-xl`}
             >
                 {[
                     { path: "/", label: "Home" },
