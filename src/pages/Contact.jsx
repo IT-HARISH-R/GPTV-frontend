@@ -29,17 +29,27 @@ const Contact = () => {
         e.preventDefault();
         setLoading(true);
         setResponseMsg(null);
+
+        const toastId = toast.loading("Sending your message...");
+
         try {
             const res = await inquirieSeever.inquirie(formData);
-            toast.success(" Inquiries  sent successfully!", {
-                position: "top-center",
+            toast.update(toastId, {
+                render: "Inquiry sent successfully!",
+                type: "success",
+                isLoading: false,
                 autoClose: 3000,
+                closeOnClick: true,
             });
+
             setFormData({ name: '', email: '', subject: '', message: '' }); // Clear form
         } catch (error) {
-            toast.error("Failed to send message. Please try again.", {
-                position: "top-center",
+            toast.update(toastId, {
+                render: "❌ Failed to send message. Please try again.",
+                type: "error",
+                isLoading: false,
                 autoClose: 3000,
+                closeOnClick: true,
             });
         } finally {
             setLoading(false);
@@ -77,7 +87,7 @@ const Contact = () => {
                                 <FiPhone className="text-blue-600 text-2xl mr-4" />
                                 <div>
                                     <h4 className="text-lg font-semibold text-gray-800">OUR CONTACT NUMBER</h4>
-                                    <p className="text-gray-700 mt-1"> 04298266177 </p>
+                                    <p className="text-gray-700 mt-1">04298266177</p>
                                 </div>
                             </div>
 
@@ -137,8 +147,7 @@ const Contact = () => {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className={`bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-md ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-800"
-                                    }`}
+                                className={`bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-md ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-800"}`}
                             >
                                 {loading ? "Sending..." : "Send Message"}
                             </button>

@@ -39,7 +39,7 @@ const CreateStudent = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4">
+    <section className="flex items-center justify-center bg-gray-100 py-12 px-4">
       <ToastContainer position="top-center" autoClose={2000} />
       <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-2xl space-y-6">
         <h2 className="text-3xl font-semibold text-center text-blue-700">
