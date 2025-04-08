@@ -23,7 +23,7 @@ const GalleryUpload = () => {
 
   const handleUpload = async () => {
     if (imageFields.some((f) => !f.name || !f.file)) {
-      return toast.error("Please provide a title and file for all images.");
+      return toast.error("Please fill out all fields before uploading.");
     }
 
     const formData = new FormData();
@@ -35,7 +35,6 @@ const GalleryUpload = () => {
     try {
       const res = await galleryServices.uplode(formData);
       toast.success("Images uploaded successfully!");
-      console.log(res);
       setImageFields([{ name: "", file: null }]);
     } catch (err) {
       console.error(err);
@@ -44,73 +43,73 @@ const GalleryUpload = () => {
   };
 
   return (
-    <div className="min-h-screen py-10 px-4">
+    <section className="bg-gray-100 px-4 py-10">
       <ToastContainer position="top-center" autoClose={2000} />
-      <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6 space-y-6 animate-fade-in">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-blue-700 mb-4">
-          🎓 Upload Images to the College Gallery
+      <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-md p-6 space-y-8 transition-all">
+        <h1 className="text-center text-3xl font-semibold text-gray-800">
+          📁 College Gallery Uploader
         </h1>
-        <div className="space-y-6">
-          {imageFields.map((field, index) => (
-            <div
-              key={index}
-              className="relative p-4 border rounded-lg bg-blue-50 shadow-sm transition-all duration-300 hover:shadow-md"
-            >
-              <button
-                onClick={() => removeField(index)}
-                className="absolute top-2 right-2 text-red-500 hover:text-red-700 text-xl"
-                title="Remove"
-              >
-                ×
-              </button>
-              <div className="mb-3">
-                <label className="block text-sm font-medium mb-1 text-blue-800">
-                  Image Title
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter image title"
-                  className="w-full border border-blue-300 p-2 rounded focus:outline-none focus:ring focus:border-blue-500"
-                  value={field.name}
-                  onChange={(e) =>
-                    handleInputChange(index, "name", e.target.value)
-                  }
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1 text-blue-800">
-                  Upload Image
-                </label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="w-full border border-blue-300 p-2 rounded focus:outline-none"
-                  onChange={(e) =>
-                    handleInputChange(index, "file", e.target.files[0])
-                  }
-                />
-              </div>
-            </div>
-          ))}
-        </div>
 
-        <div className="flex flex-wrap justify-between items-center gap-4 pt-4">
+        {imageFields.map((field, index) => (
+          <div
+            key={index}
+            className="relative p-5 border border-gray-200 rounded-xl bg-gray-50 shadow-sm"
+          >
+            <button
+              onClick={() => removeField(index)}
+              title="Remove"
+              className="absolute top-2 right-3 text-red-500 hover:text-red-700 font-bold text-lg"
+            >
+              ×
+            </button>
+
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Image Title
+              </label>
+              <input
+                type="text"
+                placeholder="Ex: Independence Day Event"
+                value={field.name}
+                onChange={(e) =>
+                  handleInputChange(index, "name", e.target.value)
+                }
+                className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Upload Image
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                  handleInputChange(index, "file", e.target.files[0])
+                }
+                className="w-full border border-gray-300 p-2 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700"
+              />
+            </div>
+          </div>
+        ))}
+
+        <div className="flex justify-between flex-wrap items-center gap-4">
           <button
             onClick={addNewField}
-            className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded-lg transition-all duration-200"
+            className="bg-gray-700 hover:bg-gray-800 text-white px-5 py-2 rounded-lg transition"
           >
-            Add New
+            ➕ Add Another
           </button>
-
           <button
             onClick={handleUpload}
-            className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg transition-all duration-200"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition"
           >
-             Upload All
+            🚀 Upload All Images
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

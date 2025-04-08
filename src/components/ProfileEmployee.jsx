@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import GalleryUpload from "../pages/GalleryUpload";
 import inquirieSeever from "../store/services/inquirieSeever";
 import { Menu, X } from "lucide-react";
+import CreateStudent from "./profile/CreateStudent";
 
 const ProfileEmployee = () => {
   const [activeSection, setActiveSection] = useState("profile");
@@ -45,7 +46,7 @@ const ProfileEmployee = () => {
       {/* Sidebar */}
       <div className={`fixed md:static z-30 inset-y-0 left-0 w-64 transition duration-300 transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 bg-gray-800`}>
         <div className="flex items-center justify-center h-16 bg-gray-900 shadow">
-          <h1 className="text-white text-2xl font-bold">Employee Panel</h1>
+          <h1 className="text-white text-2xl font-bold"> Staff Portal</h1>
         </div>
         <nav className="mt-10 px-4 space-y-2">
           {menuItems.map((item) => (
@@ -55,9 +56,8 @@ const ProfileEmployee = () => {
                 setActiveSection(item.id);
                 setSidebarOpen(false);
               }}
-              className={`w-full text-left px-4 py-2 rounded-lg text-white transition duration-200 ${
-                activeSection === item.id ? "bg-blue-600" : "hover:bg-gray-700"
-              }`}
+              className={`w-full text-left px-4 py-2 rounded-lg text-white transition duration-200 ${activeSection === item.id ? "bg-blue-600" : "hover:bg-gray-700"
+                }`}
             >
               {item.label}
             </button>
@@ -95,10 +95,13 @@ const ProfileEmployee = () => {
         {/* Content */}
         <main className="flex-1 overflow-y-auto p-6">
           {activeSection === "profile" && (
-            <div className="bg-white rounded-xl shadow p-6">
-              <h2 className="text-2xl font-bold mb-4 text-gray-800">Welcome, Employee 👋</h2>
-              <p className="text-gray-600">This is your profile dashboard. You can update your details here.</p>
-            </div>
+            <>
+              <div className="bg-white rounded-xl shadow p-6">
+                <h2 className="text-2xl font-bold  text-gray-800">Welcome, Employee 👋</h2>
+                <p className="text-gray-600">This is your profile dashboard. You can update your details here.</p>
+              </div>
+              <CreateStudent />
+            </>
           )}
 
           {activeSection === "tasks" && (
