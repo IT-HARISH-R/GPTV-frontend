@@ -4,6 +4,7 @@ import galleryServices from "../store/services/galleryServices";
 const Gallery = () => {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState(true); // 👈 Added
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -12,6 +13,8 @@ const Gallery = () => {
         setImages(res.data);
       } catch (err) {
         console.error("Error fetching gallery:", err);
+      } finally {
+        setLoading(false); // 👈 Stop loading regardless of success or error
       }
     };
 
@@ -27,32 +30,39 @@ const Gallery = () => {
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-3xl font-bold text-center font-sans mb-6 text-blue-700">
-        <span className="text-primary"> College </span> Gallery
+        <span className="text-primary">College</span> Gallery
       </h2>
 
-      {/* Gallery Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {images.map((img, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
-          >
-            <img
-              src={img.imageUrl}
-              alt={img.imageName}
-              className="w-full h-48 object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300"
-              onClick={() => setSelectedImage(img.imageUrl)}
-            />
-            <div className="px-4 py-3 text-center font-semibold text-blue-800 text-sm">
-              {img.imageName
-                .toLowerCase()
-                .split(/[\s\-_]+/)
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(" ")}
+      {loading ? (
+        // 🔄 Loader UI
+        <div className="flex justify-center items-center h-40">
+          <div className="loader ease-linear rounded-full border-8 border-t-8 border-blue-500 h-16 w-16"></div>
+        </div>
+      ) : (
+        // ✅ Gallery Grid
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {images.map((img, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+            >
+              <img
+                src={img.imageUrl}
+                alt={img.imageName}
+                className="w-full h-48 object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300"
+                onClick={() => setSelectedImage(img.imageUrl)}
+              />
+              <div className="px-4 py-3 text-center font-semibold text-blue-800 text-sm">
+                {img.imageName
+                  .toLowerCase()
+                  .split(/[\s\-_]+/)
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" ")}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* Modal Preview */}
       {selectedImage && (
@@ -76,7 +86,7 @@ const Gallery = () => {
         </div>
       )}
 
-      {/* Zoom Animation */}
+      {/* Zoom Animation & Loader Spinner Styles */}
       <style>{`
         .animate-zoomIn {
           animation: zoomIn 0.3s ease;
@@ -90,6 +100,17 @@ const Gallery = () => {
           to {
             opacity: 1;
             transform: scale(1);
+          }
+        }
+
+        .loader {
+          border-top-color: transparent;
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          to {
+            transform: rotate(360deg);
           }
         }
       `}</style>
