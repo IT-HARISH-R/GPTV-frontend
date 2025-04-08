@@ -44,14 +44,14 @@ const GeneralDepartment = () => {
           </div>
         </div>
 
-        <div className="mt-12">
+        {/* <div className="mt-12">
           <Link
             href="/departments/general"
             className="px-8 py-4 bg-purple-600 font-semibold text-lg rounded-full hover:bg-yellow-400 transition duration-300 shadow-lg"
           >
             Learn More About General Department
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

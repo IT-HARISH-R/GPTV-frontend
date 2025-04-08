@@ -45,20 +45,15 @@ const ECEDepartment = () => {
           </div>
         </div>
 
-        <div className="mt-12">
-          {/* <a
-            href="/departments/ece"
-            className="px-8 py-4 bg-pink-500 text-gray-900 font-semibold text-lg rounded-full hover:bg-pink-400 transition duration-300 shadow-lg"
-          >
-            Learn More About Electronics & Communication Engineering
-          </a> */}
+        {/* <div className="mt-12">
+
           <Link
             href="/departments/ece"
             className="px-8 py-4 bg-purple-600 font-semibold text-lg rounded-full hover:bg-yellow-400 transition duration-300 shadow-lg"
           >
             Learn More About Electronics & Communication Engineering
             </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

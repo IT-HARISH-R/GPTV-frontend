@@ -29,12 +29,15 @@ import { ToastContainer } from "react-toastify";
 import GalleryUpload from './pages/GalleryUpload';
 import Profile from './pages/Profile';
 import Login from './components/login';
+import ResetPassword from './components/Password/ResetPassword';
+import ForgotPassword from './components/Password/ForgotPassword';
 
 
 const App = () => {
   useEffect(() => {
     AOS.init();
   }, []);
+  
   return (
 
     <Router>
@@ -68,6 +71,9 @@ const App = () => {
 
         <Route path="/Signup" element={<SignIn />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        {/* <Route path="/reset-password" element={<ResetPassword />} /> */}
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
 
 
         {/* root not fount */}

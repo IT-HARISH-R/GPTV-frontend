@@ -6,8 +6,8 @@ const Departments = () => {
   return (
     <div>
       <div className="container mx-auto px-6 py-16">
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-12 font-serif uppercase tracking-wide">
-          Our Departments
+        <h1 className="text-4xl font-bold text-center text-secondary mb-12 font-serif uppercase tracking-wide">
+         <span className="text-primary">Our</span> Our Departments
         </h1>
         <div data-aos="fade-up" className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {/* Civil Engineering Department */}

@@ -7,8 +7,9 @@ const CreateStudent = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-
   });
+
+  const [loading, setLoading] = useState(false); // 🔄 Loading state
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -17,7 +18,7 @@ const CreateStudent = () => {
     }));
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const isEmpty = Object.values(formData).some((value) => !value);
@@ -25,17 +26,22 @@ const CreateStudent = () => {
       toast.error("Please fill out all fields.");
       return;
     }
-    const res = await authServices.register(formData);
-    console.log(res)
-    toast.success(res.data.message);
-    // Simulate API call here
-    // console.log("Submitted student data:", formData);
-    // toast.success("Student created successfully!");
-    setFormData({
-      name: "",
-      email: "",
 
-    });
+    setLoading(true); // Start loading
+    try {
+      const res = await authServices.register(formData);
+      toast.success(res.data.message);
+
+      setFormData({
+        name: "",
+        email: "",
+      });
+    } catch (err) {
+      console.log(err);
+      toast.error(err.response?.data?.message || "Something went wrong!");
+    } finally {
+      setLoading(false); // Stop loading
+    }
   };
 
   return (
@@ -60,7 +66,8 @@ const CreateStudent = () => {
                 name={name}
                 value={formData[name]}
                 onChange={handleChange}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                disabled={loading}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:opacity-50"
                 placeholder={`Enter ${label.toLowerCase()}`}
               />
             </div>
@@ -68,9 +75,12 @@ const CreateStudent = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
+            disabled={loading}
+            className={`w-full ${
+              loading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+            } text-white font-semibold py-3 rounded-lg transition`}
           >
-            ➕ Create Student
+            {loading ? "Creating..." : "➕ Create Student"}
           </button>
         </form>
       </div>

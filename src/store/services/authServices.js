@@ -26,7 +26,13 @@ const authServices = {
     },
     createEmployee: async(data)=>{
         return await instance.post('/createEmployee',data)
-    }
+    },
+    forgotPassword: async(data)=>{
+        return await instance.post('/send-reset',data)
+    },
+    resetPassword: async(data)=>{
+        return await instance.post('reset-password',data)
+    },
 }
 
 export default authServices;

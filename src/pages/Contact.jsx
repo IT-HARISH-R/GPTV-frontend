@@ -34,6 +34,7 @@ const Contact = () => {
 
         try {
             const res = await inquirieSeever.inquirie(formData);
+            console.log(res)
             toast.update(toastId, {
                 render: "Inquiry sent successfully!",
                 type: "success",
@@ -44,6 +45,8 @@ const Contact = () => {
 
             setFormData({ name: '', email: '', subject: '', message: '' }); // Clear form
         } catch (error) {
+            console.log(error)
+            console.log("hi")
             toast.update(toastId, {
                 render: "❌ Failed to send message. Please try again.",
                 type: "error",

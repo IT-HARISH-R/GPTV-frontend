@@ -45,14 +45,14 @@ const ComputerDepartment = () => {
           </div>
         </div>
 
-        <div className="mt-12">
+        {/* <div className="mt-12">
           <Link
             href="/departments/computer"
             className="px-8 py-4 bg-green-600 font-semibold text-lg rounded-full hover:bg-yellow-400 transition duration-300 shadow-lg"
           >
             Learn More About Computer Engineering
             </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

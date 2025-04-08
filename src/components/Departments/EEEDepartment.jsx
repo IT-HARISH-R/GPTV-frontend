@@ -44,14 +44,14 @@ const EEEDepartment = () => {
           </div>
         </div>
 
-        <div className="mt-12">
+        {/* <div className="mt-12">
           <a
             href="/departments/eee"
             className="px-8 py-4 bg-yellow-500 text-gray-900 font-semibold text-lg rounded-full hover:bg-yellow-400 transition duration-300 shadow-lg"
           >
             Learn More About Electrical & Electronics Engineering
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );
