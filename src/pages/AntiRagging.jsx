@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import complainSeever from "../store/services/complainSeever";
+import { useNavigate } from "react-router-dom";
 
 const AntiRagging = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,7 @@ const AntiRagging = () => {
   });
 
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate()
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -44,10 +45,12 @@ const AntiRagging = () => {
       });
     } catch (error) {
       console.error("Error submitting complaint:", error);
-      toast.error("Failed to submit complaint. Please try again.", {
-        position: "top-center",
-        autoClose: 3000,
-      });
+      if (error.response.data.msg === 'No token, authorization denied') {
+        navigate('/login')
+        toast.error("Oops! Please login to submit your complaint.");
+      } else {
+        toast.error(error.response.data.msg);
+      }
     } finally {
       setLoading(false);
     }

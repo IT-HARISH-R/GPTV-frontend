@@ -18,7 +18,6 @@ import Admission from './pages/admission';
 import StudentCorner from './pages/StudentCorner';
 import AntiRagging from './pages/AntiRagging';
 import Banner from './components/Banner';
-import SignIn from './pages/SignIn';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 
@@ -69,7 +68,6 @@ const App = () => {
 
 
 
-        <Route path="/Signup" element={<SignIn />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         {/* <Route path="/reset-password" element={<ResetPassword />} /> */}

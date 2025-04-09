@@ -44,7 +44,7 @@ const ProfileAdmin = () => {
   return (
     <div className="flex flex-col md:flex-row h-[calc(100vh-215px)] min-h-[500px]  bg-gray-100 font-sans overflow-hidden">
     {/* Sidebar */}
-    <div className={`fixed md:static z-30 inset-y-0 left-0 w-64 transform transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 bg-gray-800`}>
+    <div className={`fixed md:static z-[200] inset-y-0 left-0 w-64 transform transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 bg-gray-800`}>
       <div className="flex items-center justify-center h-16 bg-gray-900 shadow">
         <h1 className="text-white text-2xl font-bold">Admin Panel</h1>
       </div>
