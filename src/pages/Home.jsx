@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
 
+  
+
   useEffect(() => {
     const counters = document.querySelectorAll('.counter');
     const options = {

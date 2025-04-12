@@ -5,7 +5,7 @@ const baseURL = 'https://gpcv-backend.onrender.com/api/v1'
 
 const instance = axios.create({
     baseURL,
-    timeout: 7000,
+    timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
     },

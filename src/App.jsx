@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // import Navbar from './components/Navbar';
@@ -30,17 +30,34 @@ import Profile from './pages/Profile';
 import Login from './components/login';
 import ResetPassword from './components/Password/ResetPassword';
 import ForgotPassword from './components/Password/ForgotPassword';
+import galleryServices from './store/services/galleryServices';
 
 
 const App = () => {
   useEffect(() => {
     AOS.init();
   }, []);
-  
+
+  const [images, setImages] = useState([]);
+
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const res = await galleryServices.getGallery();
+        setImages(res.data);
+      } catch (err) {
+        console.error("Error fetching gallery:", err);
+      }
+    };
+    fetchImages();
+  }, []);
+
+
   return (
 
     <Router>
-            <ToastContainer />
+      <ToastContainer />
 
       {/* <Navbar /> Your Navbar */}
       <Banner />
