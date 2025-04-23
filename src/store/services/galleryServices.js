@@ -9,7 +9,7 @@ const galleryServices = {
             headers: {
                 "Content-Type": "multipart/form-data",
             },
-            timeout: 25000, 
+            // timeout: 25000, 
             // withCredentials: true,
         });
     },
